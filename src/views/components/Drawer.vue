@@ -1,30 +1,39 @@
 <template>
-  <v-navigation-drawer :value="value" @input="$emit('input', $event)" fixed app>
+  <v-navigation-drawer
+    :value="value"
+    @input="$emit('input', $event)"
+    fixed
+    app
+    class="brown lighten-5"
+  >
     <v-list>
       <v-list-tile>
-        <v-list-tile-title class="title">Directional</v-list-tile-title>
+        <v-list-tile-title class="title" style="color:#8D6E63">Directional</v-list-tile-title>
       </v-list-tile>
     </v-list>
-    <v-divider></v-divider>
     <v-list dense class="pt-0">
       <v-flex>
-        <v-btn class="btn_objTypes" to="/" flat>
-          <v-icon color="lighten-1">$vuetify.icons.categories</v-icon>
-          <span class="menu_text">Home</span>
+        <v-btn class="ma-0" color="brown lighten-1" style="width:100%" to="/" flat>
+          <v-icon>$vuetify.icons.categories</v-icon>
+          <span>Home</span>
         </v-btn>
-        <v-btn class="btn_objTypes" to="/listObjectType" flat>
+        <v-btn class="ma-0" color="brown lighten-1" style="width:100%" to="/listObjectType" flat>
           <v-icon color="lighten-1">$vuetify.icons.categories</v-icon>
-          <span class="menu_text">Object Types</span>
+          <span>Object Types</span>
         </v-btn>
-        <v-btn class="btn_objTypes" to="/listObject" flat>
+        <v-btn class="ma-0" color="brown lighten-1" style="width:100%" to="/listObject" flat>
           <v-icon color="lighten-1">$vuetify.icons.categories</v-icon>
-          <span class="menu_text">Object</span>
+          <span>Object</span>
         </v-btn>
+        <v-divider></v-divider>
         <v-btn
-          class="btn_objTypes"
-          v-for="item in object_types.object_types"
-          :key="item.slug"
-          :to="item.slug"
+          class="ma-0"
+          color="brown lighten-1"
+          style="width:100%"
+          v-for="(item, index) in object_types.object_types"
+          :key="index"
+          :to="{name:'object_types', params:{slug:item.slug}, query:{title:item.title}}"
+          flat
         >
           <span>{{item.title}}</span>
         </v-btn>
@@ -55,20 +64,4 @@ export default {
 </script>
 
 <style scoped>
-.v-list-tile-content {
-  display: flex;
-  justify-content: center;
-}
-.menu_text {
-  margin-left: 10px;
-}
-.v-flex {
-  width: 100%;
-}
-.btn_objTypes {
-  width: 100%;
-  color: darkcyan;
-  margin: 0;
-  box-shadow: none !important;
-}
 </style>

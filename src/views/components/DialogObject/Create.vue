@@ -7,14 +7,13 @@
       transition="dialog-bottom-transition"
     >
       <v-card>
-        <v-toolbar card dark color="primary">
+        <v-toolbar card dark color="brown lighten-4">
           <v-btn icon dark @click="$emit('input', false)">
-            <v-icon>close</v-icon>
+            <v-icon color="brown lighten-1">close</v-icon>
           </v-btn>
+          <v-toolbar-title style="color:#8D6E63">New Object</v-toolbar-title>
         </v-toolbar>
-        <v-card-title>
-          <span class="headline">Create Object</span>
-        </v-card-title>
+
         <v-form ref="form">
           <v-card-text>
             <v-container>
@@ -67,8 +66,8 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="blue darken-1" flat @click="$emit('input', false)">Close</v-btn>
-            <v-btn color="blue darken-1" flat @click.prevent="submit">Save</v-btn>
+            <v-btn color="brown lighten-1" flat @click="$emit('input', false)">Close</v-btn>
+            <v-btn color="brown lighten-1" flat @click.prevent="submit">Save</v-btn>
           </v-card-actions>
         </v-form>
       </v-card>
@@ -142,7 +141,7 @@ export default {
         title: this.title,
         slug: this.slug,
         content: this.content,
-        metafields: newmedia
+        metafields: newimages
       };
       console.log(object);
       this.$store.dispatch("add_object", object);

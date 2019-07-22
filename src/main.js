@@ -8,7 +8,9 @@ import "vuetify/dist/vuetify.min.css";
 import axios from "axios";
 import store from "./store";
 import "@mdi/font/css/materialdesignicons.css";
+// import GoTop from "@inotom/vue-go-top";
 
+// Vue.use(GoTop);
 Vue.use(axios);
 Vue.use(Vuetify, {
     iconfont: "mdi",

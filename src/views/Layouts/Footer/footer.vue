@@ -1,10 +1,11 @@
 <template>
-  <v-footer app color="brown lighten-4" height="50px" style="padding: 0 80px" manual-scroll>
-    <v-flex class="text_footer">
+  <v-footer app color="brown lighten-4 py-4 px-5" absolute>
+    <v-flex style="color: #8d6e63" md6>
       &copy;{{ new Date().getFullYear() }}
       <strong>Vuetify</strong>
     </v-flex>
-    <v-flex class="group_icon">
+    <!-- <v-spacer></v-spacer> -->
+    <v-flex class="group_icon" md6>
       <v-btn flat class="style_icon">
         <v-icon color="brown lighten-1">$vuetify.icons.facebook</v-icon>
       </v-btn>
@@ -26,9 +27,6 @@ export default {};
 </script>
 
 <style scoped>
-.text_footer {
-  color: #8d6e63;
-}
 .group_icon {
   display: flex;
   justify-content: flex-end;

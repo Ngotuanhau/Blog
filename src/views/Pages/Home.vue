@@ -1,9 +1,9 @@
 <template>
-  <v-container>
+  <v-container mt-5>
     <v-slider></v-slider>
     <v-catelayout></v-catelayout>
     <v-layout mt-5 row wrap>
-      <v-flex v-for="(item, index) in objects.objects" :key="index" d-flex md6>
+      <v-flex v-for="(item, index) in objects.objects" :key="index" d-flex xs12 md6>
         <v-object-item :item="item" />
       </v-flex>
     </v-layout>

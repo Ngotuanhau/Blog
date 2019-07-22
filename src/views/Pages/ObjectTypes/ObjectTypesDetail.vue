@@ -1,18 +1,27 @@
 <template>
   <v-container>
+    <v-layout>
+      <span
+        class="display-2 text-uppercase font-weight-bold mx-auto black mt-5"
+        style="color:white; text-align:center"
+      >{{$route.query.title}}</span>
+    </v-layout>
     <v-layout v-for="(item, index) in objects.objects" :key="index" column>
-      <span class="style_title">{{item.type_slug}}</span>
-      <v-flex class="mt-5 style_content">
-        <v-card flat class="ma-5">
+      <v-flex class="mt-4 white">
+        <v-card flat class="ma-4">
           <router-link :to="'/object/'+ item.slug">
             <v-img :src="item.metadata.image.url" aspect-ratio="1.75"></v-img>
           </router-link>
           <v-flex pa-3 class="card_auth">
             <v-icon size="40px" class="mr-2" color="brown lighten-2">$vuetify.icons.person</v-icon>
-            <span class="text_auth">Admin</span>
+            <span style="color:#a1887f">Admin</span>
           </v-flex>
           <v-card-title>
-            <router-link :to="'/object/'+ item.slug" class="card_title">{{item.title}}</router-link>
+            <router-link
+              :to="'/object/'+ item.slug"
+              class="headline font-weight-medium"
+              style="text-decoration:none; color:#a1887f"
+            >{{item.title}}</router-link>
           </v-card-title>
           <v-divider light></v-divider>
           <v-card-actions class="px-4">
@@ -68,29 +77,8 @@ export default {
 </script>
 
 <style scoped>
-.style_title {
-  text-transform: uppercase;
-  text-align: center;
-  color: white;
-  background-color: black;
-  margin: auto;
-  font-size: 25px;
-  font-weight: 700;
-}
-.style_content {
-  background-color: white;
-}
-.card_title {
-  font-size: 20px;
-  font-weight: 500;
-  text-decoration: none;
-  color: #a1887f;
-}
 .card_auth {
   display: flex;
   align-items: center;
-}
-.text_auth {
-  color: #a1887f;
 }
 </style>

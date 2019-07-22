@@ -1,16 +1,16 @@
 <template>
-  <v-container class="style_detail">
+  <v-container class="white mt-5">
     <v-layout column>
       <v-flex py-3 class="card_auth">
         <v-icon size="40px" class="mr-2" color="brown lighten-2">$vuetify.icons.person</v-icon>
-        <span class="text_auth">Admin</span>
+        <span>Admin</span>
       </v-flex>
       <v-flex>
-        <div class="post_title">
+        <div class="headline font-weight-bold mb-3">
           <span>{{title}}</span>
         </div>
         <div class="post_image" v-for="(item, index) in image" :key="index">
-          <img :src="item.url" alt="hinhanh" width="700" />
+          <v-img :src="item.url" alt="hinhanh"></v-img>
         </div>
         <div class="content">
           <span v-html="content">{{content}}</span>
@@ -18,8 +18,11 @@
       </v-flex>
       <v-divider light></v-divider>
       <v-flex my-3>
-        <router-link :to="'/object_types/' + type_slug" class="style_slug">{{type_slug}}</router-link>
-        <!-- <span class="style_slug"></span> -->
+        <router-link
+          :to="{name:'object_types',params:{slug:type_slug},query:{title:type_slug}}"
+          class="title text-uppercase"
+          style="text-decoration: none; color: #a1887f"
+        >{{type_slug}}</router-link>
       </v-flex>
       <v-divider light></v-divider>
       <v-card-actions>
@@ -65,30 +68,14 @@ export default {
 </script>
 
 <style scoped>
-.post_title {
-  display: flex;
-  font-size: 25px;
-  font-weight: 500;
-  margin-bottom: 30px;
-  text-align: center;
-}
 .post_image {
   display: flex;
   justify-content: center;
   margin-bottom: 30px;
 }
-.style_detail {
-  background-color: white;
-}
 .card_auth {
   display: flex;
   color: #a1887f;
   align-items: center;
-}
-.style_slug {
-  font-size: 18px;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: #a1887f;
 }
 </style>
