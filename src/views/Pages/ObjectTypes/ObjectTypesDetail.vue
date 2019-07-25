@@ -14,7 +14,11 @@
           </router-link>
           <v-flex pa-3 class="card_auth">
             <v-icon size="40px" class="mr-2" color="brown lighten-2">$vuetify.icons.person</v-icon>
-            <span style="color:#a1887f">Admin</span>
+            <div>
+              <span style="color:#a1887f">{{item.metadata.author.title}}</span>
+              <v-spacer></v-spacer>
+              <span style="color:#a1887f">{{item.created_at|moment('MMMM Do YYYY')}}</span>
+            </div>
           </v-flex>
           <v-card-title>
             <router-link
@@ -27,7 +31,6 @@
           <v-card-actions class="px-4">
             <v-flex>
               <span class="grey--text mr-3">0 view</span>
-              <span class="grey--text">comment</span>
             </v-flex>
             <v-btn flat icon color="red">
               <v-icon>$vuetify.icons.like</v-icon>
@@ -41,7 +44,7 @@
 
 <script>
 import axios from "axios";
-import ObjectItem from "@/views/Pages/Object/ObjectItem";
+import ObjectItem from "@/views/Pages/Objects/ObjectItem";
 
 export default {
   data() {

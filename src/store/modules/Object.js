@@ -15,10 +15,15 @@ const actions = {
     //GET OBJECTS LIST--------------------------------------------
     async get_objects({ commit }) {
         const response = await axios
-            .get("https://api.cosmicjs.com/v1/blog-post/objects?pretty=true&limit=20")
+            .get(
+                "https://api.cosmicjs.com/v1/blog-post/objects?pretty=true&sort=-created_at"
+            )
             .then(response => {
-                console.log(response.data);
-                const objects = response.data;
+                // console.log(response.data);
+                let objects = response.data.objects.filter(
+                    item => item.type_slug !== "authors"
+                );
+                console.log(objects);
                 commit("SET_OBJECTS_SUCCESS", objects);
             });
     },

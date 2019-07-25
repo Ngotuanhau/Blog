@@ -10,21 +10,30 @@
       <v-btn flat color="brown lighten-1">
         <router-link to="/" class="btn_login">Home</router-link>
       </v-btn>
+      <!-- <v-btn
+        color="brown lighten-1"
+        v-for="(item, index) in object_types"
+        :key="index"
+        :to="{name:'object_types', params:{slug:item.slug}, query:{title:item.title}}"
+        flat
+      >
+        <span>{{item.title}}</span>
+      </v-btn>-->
       <v-menu open-on-hover left offset-y>
         <template v-slot:activator="{ on }">
           <v-btn color="brown lighten-1" flat v-on="on">Categories</v-btn>
         </template>
         <v-list class="brown lighten-5">
           <v-list-tile
-            v-for="(item, index) in object_types.object_types"
+            v-for="(item, index) in object_types"
             :key="index"
-            :to="{name:'object_types',params:{slug:item.slug},query:{title:item.title}}"
+            :to="{name:'object_types', params: {slug:item.slug}, query: {title:item.title}}"
           >
             <v-list-tile-title>{{ item.title }}</v-list-tile-title>
           </v-list-tile>
         </v-list>
       </v-menu>
-      <v-menu open-on-hover left offset-y>
+      <!-- <v-menu open-on-hover left offset-y>
         <template v-slot:activator="{ on }">
           <v-btn color="brown lighten-1" flat v-on="on">Admin</v-btn>
         </template>
@@ -32,7 +41,7 @@
           <v-btn flat color="brown lighten-1" to="/listObjectType">Object Type</v-btn>
           <v-btn flat color="brown lighten-1" to="/listObject">Object</v-btn>
         </v-list>
-      </v-menu>
+      </v-menu>-->
       <v-btn flat color="brown lighten-1">
         <router-link to="/login" v-if="!isAuthenticated" class="btn_login">Login</router-link>
         <a href="#" v-if="isAuthenticated" @click="logout" class="btn_login">Logout</a>

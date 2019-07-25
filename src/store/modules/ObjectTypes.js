@@ -17,8 +17,11 @@ const actions = {
         const response = await axios
             .get("https://api.cosmicjs.com/v1/blog-post/object-types")
             .then(response => {
-                console.log(response.data.object_types);
-                const object_types = response.data;
+                // console.log(response.data.object_types);
+                const object_types = response.data.object_types.filter(
+                    item => item.slug !== "authors"
+                );
+                console.log(object_types);
                 commit("SET_OBJECT_TYPES", object_types);
             });
     },

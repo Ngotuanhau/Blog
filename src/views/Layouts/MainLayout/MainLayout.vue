@@ -16,17 +16,8 @@ import GoTop from "@inotom/vue-go-top";
 
 export default {
   components: {
-    // vDrawer: Drawer,
-    // vToolBar: Toolbar,
     GoTop
   }
-  // data() {
-  //   return {
-  //     drawer: true,
-  //     right: null,
-  //     left: null
-  //   };
-  // }
 };
 </script>
 

@@ -4,12 +4,12 @@ import Router from "vue-router";
 import Home from "@/views/Pages/Home";
 import Login from "@/views/Authentication/Login";
 import Register from "@/views/Authentication/Register";
-import ListObjectTypes from "@/views/Pages/ObjectTypes/ListObjectTypes";
+import ObjectTypes from "@/views/Pages/ObjectTypes/ObjectTypes";
 import ObjectTypeDetail from "@/views/Pages/ObjectTypes/ObjectTypesDetail";
 import BucketsList from "@/views/Pages/Buckets/BucketsList";
 import BucketCreate from "@/views/Pages/Buckets/BucketCreate";
-import ListObject from "@/views/Pages/Object/ListObject";
-import ObjectDetail from "@/views/Pages/Object/ObjectDetail";
+import Objects from "@/views/Pages/Objects/Objects";
+import ObjectDetail from "@/views/Pages/Objects/ObjectDetail";
 
 import store from "@/store";
 Vue.use(Router);
@@ -46,9 +46,9 @@ let router = new Router({
                     component: Home
                 },
                 {
-                    path: "/listObjectType",
-                    name: "listObjectType",
-                    component: ListObjectTypes
+                    path: "/objectTypes",
+                    name: "objectTypes",
+                    component: ObjectTypes
                 },
                 {
                     path: "/object_types/:slug",
@@ -56,9 +56,9 @@ let router = new Router({
                     component: ObjectTypeDetail
                 },
                 {
-                    path: "/listObject",
-                    name: "listObject",
-                    component: ListObject
+                    path: "/objects",
+                    name: "objects",
+                    component: Objects
                 },
                 {
                     path: "/object/:slug",
