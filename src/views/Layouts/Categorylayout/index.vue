@@ -1,14 +1,17 @@
 <template>
   <v-layout mt-5 row wrap>
-    <v-flex v-for="(item, index) in object_types.object_types" :key="index" xs12 md3>
-      <v-card :to="'/object_types/'+ item.slug" class="ma-2 style_card">
+    <v-flex v-for="(item, index) in object_types" :key="index" xs12 md6 lg3>
+      <v-card
+        :to="{name:'object_types',params:{slug:item.slug},query:{title:item.title}}"
+        class="ma-2 c-card"
+      >
         <v-img
           :src="`https://cosmic-s3.imgix.net/${item.metafields[0].value}`"
           height="250px"
-          class="style_image"
+          class="c-image"
         >
-          <v-flex class="style_title">
-            <span class="headline white--text">{{item.title}}</span>
+          <v-flex class="middle">
+            <span class="display-2 c-text">{{item.title}}</span>
           </v-flex>
         </v-img>
       </v-card>
@@ -28,7 +31,6 @@ export default {
   },
 
   created() {
-    this.get_image_cate();
     this.get_object_types();
   },
 
@@ -37,31 +39,45 @@ export default {
   },
 
   methods: {
-    ...mapActions(["get_object_types"]),
-
-    get_image_cate() {
-      axios
-        .get(
-          "https://api.cosmicjs.com/v1/blog-post/media?folder=images-category&pretty=true&limit=20"
-        )
-        .then(response => {
-          // console.log(response);
-          this.image_cate = response.data;
-          // console.log(this.image_cate);
-        });
-    }
+    ...mapActions(["get_object_types"])
   }
 };
 </script>
 
-<style scoped>
-.style_card {
+<style lang="scss">
+@import "../../../styles/main.scss";
+
+.c-card {
   border-radius: 10px;
 }
-.style_title {
-  padding: 20px;
+.c-card:hover .c-image {
+  opacity: 0.7;
 }
-.style_image {
-  opacity: 0.8;
+.c-card:hover .middle {
+  opacity: 1;
+}
+.c-image {
+  opacity: 1;
+  display: block;
+  transition: 0.2s ease;
+  backface-visibility: hidden;
+}
+.middle {
+  transition: 0.5s ease;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  position: absolute;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.c-text {
+  color: $text-color-2;
 }
 </style>
+

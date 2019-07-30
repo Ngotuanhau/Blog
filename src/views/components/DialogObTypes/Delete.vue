@@ -28,7 +28,7 @@ export default {
 
   methods: {
     delete_object_type(slug) {
-      const uri = `https://api.cosmicjs.com/v1/blog-post/object-types/${slug}`;
+      const uri = `https://api.cosmicjs.com/v1/f49c40c0-b266-11e9-aed5-b7314a38d741/object-types/${slug}`;
       axios.delete(uri).then(response => {
         console.log(response);
         let object_types = this.$store.state.ObjectTypes.object_types

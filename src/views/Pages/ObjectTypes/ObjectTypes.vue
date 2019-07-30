@@ -1,16 +1,13 @@
 <template>
-  <v-container>
+  <v-container mt-5>
     <v-layout column>
-      <v-flex>
-        <h1>Object Type List</h1>
-      </v-flex>
       <template>
         <div>
           <v-toolbar flat color="white">
             <template>
-              <v-btn color="primary" dark class="mb-2" @click="dialog_create=!dialog_create">
-                <v-icon color="lighten-1" class="icon_create">$vuetify.icons.create</v-icon>
-                <span>New Object Type</span>
+              <v-btn color="brown lighten-4" class="mb-2" @click="dialog_create=!dialog_create">
+                <v-icon color="brown lighten-1" class="mr-2">$vuetify.icons.create</v-icon>
+                <span style="color: #8d6e63;">New Object Type</span>
               </v-btn>
             </template>
             <v-text-field
@@ -19,7 +16,7 @@
               label="Search. . ."
               single-line
               hide-details
-              class="input_search"
+              class="pa-0"
             ></v-text-field>
           </v-toolbar>
           <v-data-table
@@ -31,11 +28,11 @@
             <template v-slot:items="props">
               <td>{{ props.item.title }}</td>
               <td class="justify-center layout px-0">
-                <v-btn color="primary" @click="openEdit(props.item)">
-                  <v-icon small>$vuetify.icons.pencil</v-icon>
+                <v-btn color="brown lighten-4" @click="openEdit(props.item)">
+                  <v-icon color="brown lighten-1" small>$vuetify.icons.pencil</v-icon>
                 </v-btn>
-                <v-btn color="primary" @click="openDelete(props.item)">
-                  <v-icon small>$vuetify.icons.trash</v-icon>
+                <v-btn color="brown lighten-4" @click="openDelete(props.item)">
+                  <v-icon color="brown lighten-1" small>$vuetify.icons.trash</v-icon>
                 </v-btn>
               </td>
             </template>
@@ -112,11 +109,5 @@ export default {
 <style scoped>
 .form_create {
   display: block;
-}
-.icon_create {
-  margin-right: 10px;
-}
-.input_search {
-  padding: 0;
 }
 </style>

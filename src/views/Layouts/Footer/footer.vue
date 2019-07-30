@@ -1,23 +1,25 @@
 <template>
-  <v-footer app color="brown lighten-4" height="50px" style="padding: 0 80px" manual-scroll>
-    <v-flex class="text_footer">
-      &copy;{{ new Date().getFullYear() }}
-      <strong>Vuetify</strong>
-    </v-flex>
-    <v-flex class="group_icon">
-      <v-btn flat class="style_icon">
-        <v-icon color="brown lighten-1">$vuetify.icons.facebook</v-icon>
-      </v-btn>
-      <v-btn flat class="style_icon">
-        <v-icon color="brown lighten-1">$vuetify.icons.google</v-icon>
-      </v-btn>
-      <v-btn flat class="style_icon">
-        <v-icon color="brown lighten-1">$vuetify.icons.twitter</v-icon>
-      </v-btn>
-      <v-btn flat class="style_icon">
-        <v-icon color="brown lighten-1">$vuetify.icons.instagram</v-icon>
-      </v-btn>
-    </v-flex>
+  <v-footer class="c-bg-footer py-4 px-5">
+    <v-layout>
+      <v-flex class="c-text" xs12 md6>
+        &copy;{{ new Date().getFullYear() }}
+        <strong>Vuetify</strong>
+      </v-flex>
+      <v-flex class="c-group-icon" xs12 md6>
+        <v-btn text class="c-btn">
+          <v-icon color="brown lighten-1">$vuetify.icons.twitter</v-icon>
+        </v-btn>
+        <v-btn text class="c-btn">
+          <v-icon color="brown lighten-1">$vuetify.icons.google</v-icon>
+        </v-btn>
+        <v-btn text class="c-btn">
+          <v-icon color="brown lighten-1">$vuetify.icons.instagram</v-icon>
+        </v-btn>
+        <v-btn text class="c-btn">
+          <v-icon color="brown lighten-1">$vuetify.icons.facebook</v-icon>
+        </v-btn>
+      </v-flex>
+    </v-layout>
   </v-footer>
 </template>
 
@@ -25,15 +27,22 @@
 export default {};
 </script>
 
-<style scoped>
-.text_footer {
-  color: #8d6e63;
+<style lang="scss" scoped>
+@import "../../../styles/main.scss";
+
+.c-bg-footer {
+  background-color: $main-bg-color-3;
 }
-.group_icon {
+.c-text {
+  color: $text-color-1;
+  display: flex;
+  align-items: center;
+}
+.c-group-icon {
   display: flex;
   justify-content: flex-end;
 }
-.style_icon {
+.c-btn {
   min-width: 15px;
   margin: 6px 0;
 }

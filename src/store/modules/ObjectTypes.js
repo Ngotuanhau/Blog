@@ -15,10 +15,15 @@ const actions = {
     //GET LIST_OBJECT_TYPES---------------------------
     async get_object_types({ commit }) {
         const response = await axios
-            .get("https://api.cosmicjs.com/v1/blog-post/object-types")
+            .get(
+                "https://api.cosmicjs.com/v1/f49c40c0-b266-11e9-aed5-b7314a38d741/object-types"
+            )
             .then(response => {
-                console.log(response.data.object_types);
-                const object_types = response.data;
+                // console.log(response.data.object_types);
+                const object_types = response.data.object_types.filter(
+                    item => item.slug !== "authors"
+                );
+                console.log(object_types);
                 commit("SET_OBJECT_TYPES", object_types);
             });
     },
@@ -27,7 +32,7 @@ const actions = {
     async add_object_type({ commit }, object_type) {
         const response = await axios
             .post(
-                "https://api.cosmicjs.com/v1/blog-post/add-object-type",
+                "https://api.cosmicjs.com/v1/f49c40c0-b266-11e9-aed5-b7314a38d741/add-object-type",
                 object_type
             )
             .then(response => {
@@ -51,7 +56,7 @@ const actions = {
     //EDIT OBJECT_TYPES----------------------------------
     async edit_object_type({ commit }, slug) {
         await axios.put(
-            `https://api.cosmicjs.com/v1/blog-post/edit-object-type/${slug}`
+            `https://api.cosmicjs.com/v1/f49c40c0-b266-11e9-aed5-b7314a38d741/edit-object-type/${slug}`
         );
         commit("SET_EDIT_OBJECT_TYPE_SUCCESS", slug);
     }

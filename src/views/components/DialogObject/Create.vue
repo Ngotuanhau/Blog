@@ -7,14 +7,13 @@
       transition="dialog-bottom-transition"
     >
       <v-card>
-        <v-toolbar card dark color="primary">
-          <v-btn icon dark @click="$emit('input', false)">
-            <v-icon>close</v-icon>
+        <v-toolbar card color="brown lighten-4">
+          <v-btn icon @click="$emit('input', false)">
+            <v-icon color="brown lighten-1">close</v-icon>
           </v-btn>
+          <v-toolbar-title style="color:#8D6E63">New Object</v-toolbar-title>
         </v-toolbar>
-        <v-card-title>
-          <span class="headline">Create Object</span>
-        </v-card-title>
+
         <v-form ref="form">
           <v-card-text>
             <v-container>
@@ -67,8 +66,8 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="blue darken-1" flat @click="$emit('input', false)">Close</v-btn>
-            <v-btn color="blue darken-1" flat @click.prevent="submit">Save</v-btn>
+            <v-btn color="brown lighten-1" flat @click="$emit('input', false)">Close</v-btn>
+            <v-btn color="brown lighten-1" flat @click.prevent="submit">Save</v-btn>
           </v-card-actions>
         </v-form>
       </v-card>
@@ -78,6 +77,7 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import * as Url from "@/plugins/config";
 import { VueEditor } from "vue2-editor";
 import axios from "axios";
 
@@ -114,7 +114,10 @@ export default {
         formData.append("file", image);
         console.log(image);
         uploadPromise.push(
-          axios.post("https://api.cosmicjs.com/v1/blog-post/media", formData)
+          axios.post(
+            "https://api.cosmicjs.com/v1/f49c40c0-b266-11e9-aed5-b7314a38d741/media",
+            formData
+          )
         );
         console.log(uploadPromise);
       });
@@ -142,7 +145,7 @@ export default {
         title: this.title,
         slug: this.slug,
         content: this.content,
-        metafields: newmedia
+        metafields: newimages
       };
       console.log(object);
       this.$store.dispatch("add_object", object);
@@ -176,7 +179,9 @@ export default {
 
     get_type_slugs() {
       axios
-        .get("https://api.cosmicjs.com/v1/blog-post/object-types")
+        .get(
+          "https://api.cosmicjs.com/v1/f49c40c0-b266-11e9-aed5-b7314a38d741/object-types"
+        )
         .then(response => {
           console.log(response);
           const type_slugs = [];

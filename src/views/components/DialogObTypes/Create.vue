@@ -1,20 +1,17 @@
 <template>
-  <v-layout row justify-center>
+  <v-layout>
     <v-dialog
       :value="value"
       @input="$emit('input', $event)"
       fullscreen
-      hide-overlay
-      persistent
       transition="dialog-bottom-transition"
-      scrollable
     >
       <v-card>
-        <v-toolbar card dark color="primary">
-          <v-btn icon dark @click="$emit('input', false)">
-            <v-icon>close</v-icon>
+        <v-toolbar card color="brown lighten-4">
+          <v-btn icon @click="$emit('input', false)">
+            <v-icon color="brown lighten-1">close</v-icon>
           </v-btn>
-          <v-toolbar-title>New Object Type</v-toolbar-title>
+          <v-toolbar-title style="color:#8D6E63">New Object Type</v-toolbar-title>
         </v-toolbar>
 
         <v-form ref="form">
@@ -36,8 +33,8 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="blue darken-1" flat @click="$emit('input', false)">Close</v-btn>
-            <v-btn color="blue darken-1" flat @click.prevent="submit">Save</v-btn>
+            <v-btn color="brown lighten-1" flat @click="$emit('input', false)">Close</v-btn>
+            <v-btn color="brown lighten-1" flat @click.prevent="submit">Save</v-btn>
           </v-card-actions>
         </v-form>
       </v-card>

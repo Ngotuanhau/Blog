@@ -4,6 +4,7 @@ import ObjectTypes from "./modules/ObjectTypes";
 import Object from "./modules/Object";
 import Authentication from "./modules/Authentication";
 import Buckets from "./modules/Buckets";
+import Counter from "./modules/Counter";
 // import Categories from "./modules/Categories";
 
 //Load Vuex
@@ -15,7 +16,8 @@ export default new Vuex.Store({
         ObjectTypes,
         Authentication,
         Buckets,
-        Object
+        Object,
+        Counter
         // Categories
     }
 });

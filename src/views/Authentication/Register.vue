@@ -1,6 +1,6 @@
 <template>
-  <v-layout>
-    <v-flex>
+  <v-layout mt-10>
+    <v-flex mt-10>
       <v-card>
         <v-card-text>
           <v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>

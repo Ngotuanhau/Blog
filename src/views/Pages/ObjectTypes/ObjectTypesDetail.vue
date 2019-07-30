@@ -1,26 +1,34 @@
 <template>
-  <v-container>
+  <v-container mt-5>
+    <v-layout my-5>
+      <span class="display-2 text-uppercase font-weight-bold mx-auto c-text">{{$route.query.title}}</span>
+    </v-layout>
     <v-layout v-for="(item, index) in objects.objects" :key="index" column>
-      <span class="style_title">{{item.type_slug}}</span>
-      <v-flex class="mt-5 style_content">
-        <v-card flat class="ma-5">
+      <v-flex class="c-obType-detail">
+        <v-card class="ma-5">
           <router-link :to="'/object/'+ item.slug">
             <v-img :src="item.metadata.image.url" aspect-ratio="1.75"></v-img>
           </router-link>
-          <v-flex pa-3 class="card_auth">
+          <v-flex pa-3 class="c-person">
             <v-icon size="40px" class="mr-2" color="brown lighten-2">$vuetify.icons.person</v-icon>
-            <span class="text_auth">Admin</span>
+            <div>
+              <span class="c-card-text">{{item.metadata.author.title}}</span>
+              <v-spacer></v-spacer>
+              <span class="c-card-text">{{item.created_at|moment('MMMM Do YYYY')}}</span>
+            </div>
           </v-flex>
           <v-card-title>
-            <router-link :to="'/object/'+ item.slug" class="card_title">{{item.title}}</router-link>
+            <router-link
+              :to="'/object/'+ item.slug"
+              class="headline font-weight-medium c-card-text"
+            >{{item.title}}</router-link>
           </v-card-title>
-          <v-divider light></v-divider>
+
           <v-card-actions class="px-4">
             <v-flex>
               <span class="grey--text mr-3">0 view</span>
-              <span class="grey--text">comment</span>
             </v-flex>
-            <v-btn flat icon color="red">
+            <v-btn text icon color="red">
               <v-icon>$vuetify.icons.like</v-icon>
             </v-btn>
           </v-card-actions>
@@ -32,7 +40,8 @@
 
 <script>
 import axios from "axios";
-import ObjectItem from "@/views/Pages/Object/ObjectItem";
+import ObjectItem from "@/views/Pages/Objects/ObjectItem";
+import Url from "@/plugins/config";
 
 export default {
   data() {
@@ -51,9 +60,7 @@ export default {
   methods: {
     getData() {
       axios
-        .get(
-          `https://api.cosmicjs.com/v1/blog-post/objects?type=${this.$route.params.slug}`
-        )
+        .get(`${Url.url_object_types}${this.$route.params.slug}`)
         .then(response => {
           console.log(response);
           this.objects = response.data;
@@ -67,30 +74,23 @@ export default {
 };
 </script>
 
-<style scoped>
-.style_title {
-  text-transform: uppercase;
+<style lang='scss' scoped>
+@import "../../../styles/main.scss";
+
+.c-text {
+  background-color: $text-bg-color;
+  color: $text-color-2;
   text-align: center;
-  color: white;
-  background-color: black;
-  margin: auto;
-  font-size: 25px;
-  font-weight: 700;
 }
-.style_content {
-  background-color: white;
-}
-.card_title {
-  font-size: 20px;
-  font-weight: 500;
+.c-card-text {
+  color: $text-color-1;
   text-decoration: none;
-  color: #a1887f;
 }
-.card_auth {
+.c-obType-detail {
+  background-color: $main-bg-color-2;
+}
+.c-person {
   display: flex;
   align-items: center;
-}
-.text_auth {
-  color: #a1887f;
 }
 </style>
