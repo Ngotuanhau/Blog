@@ -1,37 +1,46 @@
 <template>
-  <v-app class="brown lighten-5">
-    <v-container>
-      <Header @toogle="drawer=!drawer" />
-      <Drawer v-model="drawer" v-if="$vuetify.breakpoint.xs" />
-      <MainLayout />
-      <Footer />
-    </v-container>
+  <v-app class="c-bg-app">
+    <v-navigation-drawer v-model="drawer" app v-if="$vuetify.breakpoint.xs"></v-navigation-drawer>
+    <v-app-bar @toogle="drawer=!drawer" app></v-app-bar>
+    <v-content>
+      <v-main-layout></v-main-layout>
+      <go-top :size="40" :bottom="150" bg-color="brown" :has-outline="false" :max-width="320"></go-top>
+    </v-content>
+    <v-footer app></v-footer>
   </v-app>
 </template>
-
 <script>
+import AppBar from "@/views/Layouts/Header/Toolbar";
+import NavigationDrawer from "@/views/components/Drawer";
+import MainLayout from "@/views/Layouts/MainLayout/MainLayout";
+import Footer from "@/views/Layouts/Footer/footer";
+import GoTop from "@inotom/vue-go-top";
+
 export default {
   name: "App",
   components: {
-    Header: () => import("@/views/Layouts/Header/Toolbar"),
-    Drawer: () => import("@/views/components/Drawer"),
-    MainLayout: () => import("@/views/Layouts/MainLayout/MainLayout"),
-    Footer: () => import("@/views/Layouts/Footer/footer")
+    GoTop,
+    vAppBar: AppBar,
+    vNavigationDrawer: NavigationDrawer,
+    vMainLayout: MainLayout,
+    vFooter: Footer
   },
   props: {
     source: String
   },
   data() {
     return {
-      drawer: false,
+      drawer: null,
       left: null
     };
   }
 };
 </script>
 
-<style scoped>
-.style_background {
-  background-color: #efebe9;
+<style lang="scss">
+@import "./styles/main.scss";
+
+.c-bg-app {
+  background-color: $main-bg-color_1;
 }
 </style>

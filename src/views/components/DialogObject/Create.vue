@@ -7,8 +7,8 @@
       transition="dialog-bottom-transition"
     >
       <v-card>
-        <v-toolbar card dark color="brown lighten-4">
-          <v-btn icon dark @click="$emit('input', false)">
+        <v-toolbar card color="brown lighten-4">
+          <v-btn icon @click="$emit('input', false)">
             <v-icon color="brown lighten-1">close</v-icon>
           </v-btn>
           <v-toolbar-title style="color:#8D6E63">New Object</v-toolbar-title>
@@ -77,6 +77,7 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import * as Url from "@/plugins/config";
 import { VueEditor } from "vue2-editor";
 import axios from "axios";
 
@@ -113,7 +114,10 @@ export default {
         formData.append("file", image);
         console.log(image);
         uploadPromise.push(
-          axios.post("https://api.cosmicjs.com/v1/blog-post/media", formData)
+          axios.post(
+            "https://api.cosmicjs.com/v1/f49c40c0-b266-11e9-aed5-b7314a38d741/media",
+            formData
+          )
         );
         console.log(uploadPromise);
       });
@@ -175,7 +179,9 @@ export default {
 
     get_type_slugs() {
       axios
-        .get("https://api.cosmicjs.com/v1/blog-post/object-types")
+        .get(
+          "https://api.cosmicjs.com/v1/f49c40c0-b266-11e9-aed5-b7314a38d741/object-types"
+        )
         .then(response => {
           console.log(response);
           const type_slugs = [];

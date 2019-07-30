@@ -1,11 +1,18 @@
 <template>
-  <v-carousel flat hide-delimiters>
-    <v-carousel-item v-for="(item,index) in image_slide.media" :key="index" :src="item.url"></v-carousel-item>
+  <v-carousel hide-delimiters>
+    <v-carousel-item
+      v-for="(item,index) in image_slide.media"
+      :key="index"
+      :src="item.url"
+      reverse-transition="fade-transition"
+      transition="fade-transition"
+    ></v-carousel-item>
   </v-carousel>
 </template>
 
 <script>
 import axios from "axios";
+import Url from "@/plugins/config";
 
 export default {
   data() {
@@ -20,15 +27,11 @@ export default {
 
   methods: {
     get_image_slide() {
-      axios
-        .get(
-          "https://api.cosmicjs.com/v1/blog-post/media?folder=slider-image&pretty=true&limit=20"
-        )
-        .then(response => {
-          // console.log(response);
-          this.image_slide = response.data;
-          // console.log(this.image_slide);
-        });
+      axios.get(Url.url_slider_image).then(response => {
+        // console.log(response);
+        this.image_slide = response.data;
+        // console.log(this.image_slide);
+      });
     }
   }
 };

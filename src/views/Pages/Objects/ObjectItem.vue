@@ -2,47 +2,53 @@
   <v-container fluid grid-list-md>
     <v-data-iterator
       :items="objects"
-      :rows-per-page-items="rowsPerPageItems"
-      :pagination.sync="pagination"
-      row
-      wrap
-      content-tag="v-layout"
+      :items-per-page.sync="itemsPerPage"
+      :footer-props="{ itemsPerPageOptions }"
     >
-      <template v-slot:item="props">
-        <v-flex d-flex xs12 md6>
-          <v-card class="ma-3" flat>
-            <router-link :to="'/object/'+ props.item.slug">
-              <v-img :src="props.item.metadata.image.url" aspect-ratio="1.75"></v-img>
-            </router-link>
-            <v-flex px-3 my-3 class="card_auth">
-              <v-icon size="40px" class="mr-2" color="brown lighten-2">$vuetify.icons.person</v-icon>
-              <div>
-                <span class="text_auth">{{props.item.metadata.author.title}}</span>
-                <v-spacer></v-spacer>
-                <span class="text_auth">{{ props.item.created_at | moment("MMMM Do YYYY") }}</span>
-              </div>
-            </v-flex>
-            <v-card-title class="px-3 pb-5">
-              <router-link
-                :to="'/object/'+ props.item.slug"
-                class="headline font-weight-medium"
-                style="color:#A1887F; text-decoration: none"
-              >{{props.item.title}}</router-link>
-            </v-card-title>
-            <v-card-actions class="px-3 style_action">
-              <v-flex>
-                <span class="grey--text mr-3">0 view</span>
+      <template v-slot:default="props">
+        <v-layout wrap>
+          <v-flex
+            d-flex
+            xs12
+            sm6
+            md6
+            v-for="(item, index) in props.items"
+            :key="index"
+            class="pa-2"
+          >
+            <v-card>
+              <router-link :to="'/object/'+ item.slug">
+                <v-img :src="item.metadata.image.url" alt="hinhanh" height="300"></v-img>
+              </router-link>
+              <v-flex class="my-2 px-2 c-person">
+                <v-icon size="40px" color="brown lighten-2" class="mr-3">$vuetify.icons.person</v-icon>
+                <div>
+                  <span class="c-text">{{item.metadata.author.title}}</span>
+                  <v-spacer></v-spacer>
+                  <span class="c-text">{{item.created_at | moment("MMMM Do YYYY") }}</span>
+                </div>
               </v-flex>
-              <v-spacer></v-spacer>
-              <div>
-                <span class="grey--text">{{counter}}</span>
-                <v-btn flat icon color="red" @click="increment">
-                  <v-icon>$vuetify.icons.like</v-icon>
-                </v-btn>
-              </div>
-            </v-card-actions>
-          </v-card>
-        </v-flex>
+              <v-card-title class="mb-9">
+                <router-link
+                  :to="'/object/'+ item.slug"
+                  class="headline font-weight-medium c-text"
+                >{{item.title}}</router-link>
+              </v-card-title>
+              <v-card-actions class="c-action">
+                <v-flex>
+                  <span class="grey--text">0 view</span>
+                </v-flex>
+                <v-spacer></v-spacer>
+                <div>
+                  <span class="grey--text">{{counter}}</span>
+                  <v-btn text icon color="red" @click="increment" height="40">
+                    <v-icon>$vuetify.icons.like</v-icon>
+                  </v-btn>
+                </div>
+              </v-card-actions>
+            </v-card>
+          </v-flex>
+        </v-layout>
       </template>
     </v-data-iterator>
   </v-container>
@@ -50,13 +56,12 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+
 export default {
   data() {
     return {
-      rowsPerPageItems: [6, 12, 18],
-      pagination: {
-        rowsPerPage: 6
-      }
+      itemsPerPageOptions: [4, 8, 12],
+      itemsPerPage: 4
     };
   },
 
@@ -82,17 +87,20 @@ export default {
 };
 </script>
 
-<style scoped>
-.card_auth {
+<style lang="scss" scoped>
+@import "../../../styles/main.scss";
+.c-person {
   display: flex;
   align-items: center;
 }
-.text_auth {
-  color: #a1887f;
+.c-text {
+  color: $text-color-1;
+  text-decoration: none;
 }
-.style_action {
+.c-action {
   position: absolute;
   bottom: 0;
   width: 100%;
+  padding-top: 0;
 }
 </style>

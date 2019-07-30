@@ -7,8 +7,8 @@
       transition="dialog-bottom-transition"
     >
       <v-card>
-        <v-toolbar card dark color="brown lighten-4">
-          <v-btn icon dark @click="$emit('input', false)">
+        <v-toolbar card color="brown lighten-4">
+          <v-btn icon @click="$emit('input', false)">
             <v-icon color="brown lighten-1">close</v-icon>
           </v-btn>
           <v-toolbar-title style="color:#8D6E63">New Object Type</v-toolbar-title>

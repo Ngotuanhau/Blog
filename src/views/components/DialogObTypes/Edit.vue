@@ -55,7 +55,7 @@ export default {
     submit() {
       axios
         .put(
-          "https://api.cosmicjs.com/v1/blog-post/edit-object-type",
+          "https://api.cosmicjs.com/v1/f49c40c0-b266-11e9-aed5-b7314a38d741/edit-object-type",
           this.editData
         )
         .then(response => {

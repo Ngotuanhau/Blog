@@ -1,8 +1,12 @@
 <template>
   <v-container mt-5>
-    <v-slider></v-slider>
-    <v-catelayout></v-catelayout>
-    <v-object-item></v-object-item>
+    <v-layout mt-5>
+      <v-flex>
+        <v-slider></v-slider>
+        <v-catelayout></v-catelayout>
+        <v-object-item></v-object-item>
+      </v-flex>
+    </v-layout>
   </v-container>
 </template>
 
@@ -16,9 +20,15 @@ export default {
     vSlider: Slider,
     vCatelayout: Catelayout,
     vObjectItem: ObjectItem
+  },
+
+  data() {
+    return {
+      show: true
+    };
   }
 };
 </script>
 
-<style scoped>
+<style lang="scss">
 </style>

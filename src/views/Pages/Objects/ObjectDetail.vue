@@ -1,7 +1,7 @@
 <template>
-  <v-container class="white mt-5 pa-5">
+  <v-container class="c-bg-ob-detail mt-5 pa-5">
     <v-layout v-if="object" column pa-5>
-      <v-flex py-3 class="card_auth">
+      <v-flex py-3 class="c-person">
         <v-icon size="40px" class="mr-2" color="brown lighten-2">$vuetify.icons.person</v-icon>
         <span>{{object.metadata.author.title}}</span>
         <v-spacer></v-spacer>
@@ -25,62 +25,53 @@
       <v-flex my-3>
         <router-link
           :to="{name:'object_types',params:{slug:object.type_slug},query:{title:object.type_slug}}"
-          class="title text-uppercase"
-          style="text-decoration: none; color: #a1887f"
+          class="title text-uppercase c-type_slug"
         >{{object.type_slug}}</router-link>
       </v-flex>
       <v-divider light></v-divider>
       <v-card-actions>
         <v-flex>
-          <v-btn flat icon>
+          <v-btn text icon>
             <v-icon color="grey">$vuetify.icons.comment</v-icon>
           </v-btn>
         </v-flex>
-        <v-btn flat icon color="red">
+        <v-btn text icon color="red">
           <v-icon>$vuetify.icons.like</v-icon>
         </v-btn>
       </v-card-actions>
     </v-layout>
     <v-layout column mt-5>
       <v-flex>
-        <span class="title" style="color: #a1887f">Related posts</span>
+        <span class="title c-related">Related posts</span>
       </v-flex>
-
       <v-container fluid grid-list-md>
         <v-data-iterator
           :items="objects_related"
-          :rows-per-page-items="rowsPerPageItems"
-          :pagination.sync="pagination"
-          row
-          wrap
-          content-tag="v-layout"
+          :items-per-page.sync="itemsPerPage"
+          :footer-props="{ itemsPerPageOptions }"
         >
-          <template v-slot:item="props">
-            <v-flex d-flex xs12 sm6 md6>
-              <v-card class="style_card brown lighten-5 ma-2" flat>
-                <router-link :to="'/object/'+ props.item.slug">
-                  <v-img
-                    :src="props.item.metadata.image.url"
-                    aspect-ratio="1.75"
-                    class="style_image"
-                  ></v-img>
-                </router-link>
-
-                <v-card-title class="px-3 pb-5 style_middle">
-                  <router-link
-                    :to="'/object/'+ props.item.slug"
-                    class="subtitle-1 font-weight-medium style_text"
-                    style="color: #f1f1f1; text-decoration: none"
-                  >{{props.item.title}}</router-link>
-                  <v-flex>
-                    <span style="color: #f1f1f1">{{counter}}</span>
-                    <v-btn flat icon color="white" @click="increment">
-                      <v-icon>$vuetify.icons.like</v-icon>
-                    </v-btn>
-                  </v-flex>
-                </v-card-title>
-              </v-card>
-            </v-flex>
+          <template v-slot:default="props">
+            <v-layout wrap>
+              <v-flex xs12 sm6 md4 v-for="(item, index) in props.items" :key="index">
+                <v-card class="c-card ma-2" text>
+                  <router-link :to="'/object/'+ item.slug">
+                    <v-img :src="item.metadata.image.url" height="300" class="c-image"></v-img>
+                    <v-card-title class="middle">
+                      <router-link
+                        :to="'/object/'+ item.slug"
+                        class="headline font-weight-medium c-text"
+                      >{{item.title}}</router-link>
+                      <v-flex>
+                        <span class="c-text">{{counter}}</span>
+                        <v-btn text icon color="white" @click="increment">
+                          <v-icon>$vuetify.icons.like</v-icon>
+                        </v-btn>
+                      </v-flex>
+                    </v-card-title>
+                  </router-link>
+                </v-card>
+              </v-flex>
+            </v-layout>
           </template>
         </v-data-iterator>
       </v-container>
@@ -90,16 +81,15 @@
 
 <script>
 import axios from "axios";
+import Url from "@/plugins/config";
 
 export default {
   data() {
     return {
       object: null,
       objects: [],
-      rowsPerPageItems: [2, 4, 6],
-      pagination: {
-        rowsPerPage: 2
-      }
+      itemsPerPageOptions: [3, 6, 9],
+      itemsPerPage: 3
     };
   },
 
@@ -123,9 +113,7 @@ export default {
 
     getData() {
       axios
-        .get(
-          `https://api.cosmicjs.com/v1/blog-post/object/${this.$route.params.slug}`
-        )
+        .get(`${Url.url_object_detail}/${this.$route.params.slug}`)
         .then(response => {
           console.log(response.data.object);
           this.object = response.data.object;
@@ -135,9 +123,7 @@ export default {
 
     getObjects() {
       axios
-        .get(
-          `https://api.cosmicjs.com/v1/blog-post/objects?type=${this.object.type_slug}`
-        )
+        .get(`${Url.url_object_types}${this.object.type_slug}`)
         .then(response => {
           console.log(response);
           this.objects = response.data.objects;
@@ -154,29 +140,39 @@ export default {
 };
 </script>
 
-<style scoped>
-.card_auth {
+<style lang="scss" scoped>
+@import "../../../styles/main.scss";
+
+.c-bg-ob-detail {
+  background-color: $main-bg-color-2;
+}
+.c-person {
   display: flex;
-  color: #a1887f;
+  color: $text-color-1;
   align-items: center;
 }
-.style_action {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
+.c-type_slug,
+.c-related {
+  text-decoration: none;
+  color: $text-color-1;
 }
-.style_image {
+.c-image {
   opacity: 1;
   display: block;
   transition: 0.2s ease;
+  border-radius: 10px;
 }
-.style_card:hover .style_image {
+.c-card {
+  border-radius: 10px;
+}
+.c-card:hover .c-image {
   opacity: 0.7;
 }
-.style_card:hover .style_middle {
+.c-card:hover .middle {
   opacity: 1;
 }
-.style_middle {
+.middle {
+  border-radius: 10px;
   background: rgb(0, 0, 0);
   background: rgba(0, 0, 0, 0.5);
   position: absolute;
@@ -186,7 +182,12 @@ export default {
   transition: 0.5s ease;
   opacity: 0;
   font-size: 20px;
-  padding: 20px;
+  display: block;
   text-align: center;
+  padding-top: 70px;
+}
+.c-text {
+  color: $text-color-2;
+  text-decoration: none;
 }
 </style>

@@ -16,7 +16,7 @@ const actions = {
     async get_objects({ commit }) {
         const response = await axios
             .get(
-                "https://api.cosmicjs.com/v1/blog-post/objects?pretty=true&sort=-created_at"
+                "https://api.cosmicjs.com/v1/f49c40c0-b266-11e9-aed5-b7314a38d741/objects?pretty=true&sort=-created_at"
             )
             .then(response => {
                 // console.log(response.data);
@@ -31,7 +31,10 @@ const actions = {
     //ADD OBJECT---------------------------------------------------
     async add_object({ commit }, object) {
         const response = await axios
-            .post("https://api.cosmicjs.com/v1/blog-post/add-object", object)
+            .post(
+                "https://api.cosmicjs.com/v1/f49c40c0-b266-11e9-aed5-b7314a38d741/add-object",
+                object
+            )
             .then(response => {
                 console.log(response);
                 commit("SET_ADD_OBJECT_SUCCESS", object);

@@ -1,24 +1,25 @@
 <template>
-  <v-layout justify-center align-center>
-    <v-flex>
-      <v-card>
+  <v-layout mt-10 d-flex justify-center>
+    <v-flex mt-10 md6 lg6>
+      <v-card width="100%">
         <v-card-text>
           <v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
           <v-text-field :type="'password'" v-model="password" label="Password" required></v-text-field>
         </v-card-text>
-        <v-divider class="mt-5"></v-divider>
         <v-card-actions>
-          <v-btn @click.prevent="login" color="success">Login</v-btn>
-          <v-btn color="info">
-            <router-link to="/register" class="but_register">Register</router-link>
-          </v-btn>
+          <v-flex d-flex>
+            <v-btn @click.prevent="login" color="success">Login</v-btn>
+            <v-btn color="info" to="/register" class="but_register">Register</v-btn>
+          </v-flex>
           <v-spacer></v-spacer>
-          <v-btn color="info" flat class="btn_face">
-            <v-icon color="icon_face">$vuetify.icons.facebook</v-icon>
-          </v-btn>
-          <v-btn color="red" flat class="btn_google">
-            <v-icon color="icon_google">$vuetify.icons.google</v-icon>
-          </v-btn>
+          <v-flex d-flex justify-end>
+            <v-btn icon color="info" text class="btn_face">
+              <v-icon color="icon_face">$vuetify.icons.facebook</v-icon>
+            </v-btn>
+            <v-btn icon color="red" text class="btn_google">
+              <v-icon color="icon_google">$vuetify.icons.google</v-icon>
+            </v-btn>
+          </v-flex>
         </v-card-actions>
       </v-card>
     </v-flex>
@@ -51,25 +52,13 @@ export default {
 </script>
 
 <style scoped>
-.form-login {
-  display: block;
-}
 .btn_face,
 .btn_google {
-  padding: 0;
   min-width: 30px;
+  color: white;
 }
 .but_register {
   text-decoration: none;
   color: white;
-}
-.flex {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.v-sheet {
-  width: 50%;
-  border-radius: 10px;
 }
 </style>

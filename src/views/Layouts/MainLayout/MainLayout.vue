@@ -1,28 +1,18 @@
 <template>
-  <v-app id="inspire">
-    <v-container class="style_view">
-      <v-content>
-        <router-view />
-        <go-top :size="40" :bottom="150" bg-color="brown" :has-outline="false" :max-width="320"></go-top>
-      </v-content>
-    </v-container>
-  </v-app>
+  <v-container fluid mt-6>
+    <router-view></router-view>
+  </v-container>
 </template>
 
 <script>
-import GoTop from "@inotom/vue-go-top";
-// import Drawer from "@/views/components/Drawer";
-// import Toolbar from "@/views/components/Toolbar";
+import Breadcrumbs from "@/views/components/Breadcrumbs/breadcrumbs";
 
 export default {
   components: {
-    GoTop
+    Breadcrumbs
   }
 };
 </script>
 
 <style scoped>
-.style_view {
-  background-color: #efebe9;
-}
 </style>

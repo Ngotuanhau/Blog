@@ -1,17 +1,17 @@
 <template>
   <v-layout mt-5 row wrap>
-    <v-flex v-for="(item, index) in object_types" :key="index" xs12 md3>
+    <v-flex v-for="(item, index) in object_types" :key="index" xs12 md6 lg3>
       <v-card
         :to="{name:'object_types',params:{slug:item.slug},query:{title:item.title}}"
-        class="ma-2 style_card"
+        class="ma-2 c-card"
       >
         <v-img
           :src="`https://cosmic-s3.imgix.net/${item.metafields[0].value}`"
           height="250px"
-          class="style_image"
+          class="c-image"
         >
-          <v-flex class="pa-2 middle">
-            <span class="display-2 style_text">{{item.title}}</span>
+          <v-flex class="middle">
+            <span class="display-2 c-text">{{item.title}}</span>
           </v-flex>
         </v-img>
       </v-card>
@@ -44,17 +44,19 @@ export default {
 };
 </script>
 
-<style scoped>
-.style_card {
+<style lang="scss">
+@import "../../../styles/main.scss";
+
+.c-card {
   border-radius: 10px;
 }
-.style_card:hover .style_image {
+.c-card:hover .c-image {
   opacity: 0.7;
 }
-.style_card:hover .middle {
+.c-card:hover .middle {
   opacity: 1;
 }
-.style_image {
+.c-image {
   opacity: 1;
   display: block;
   transition: 0.2s ease;
@@ -74,7 +76,8 @@ export default {
   align-items: center;
   justify-content: center;
 }
-.style_text {
-  color: white;
+.c-text {
+  color: $text-color-2;
 }
 </style>
+

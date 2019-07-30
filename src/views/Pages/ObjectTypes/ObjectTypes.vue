@@ -5,12 +5,7 @@
         <div>
           <v-toolbar flat color="white">
             <template>
-              <v-btn
-                color="brown lighten-4"
-                dark
-                class="mb-2"
-                @click="dialog_create=!dialog_create"
-              >
+              <v-btn color="brown lighten-4" class="mb-2" @click="dialog_create=!dialog_create">
                 <v-icon color="brown lighten-1" class="mr-2">$vuetify.icons.create</v-icon>
                 <span style="color: #8d6e63;">New Object Type</span>
               </v-btn>
